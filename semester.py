@@ -8,6 +8,12 @@ class Semester:
         self.klasses = klasses
         self.total_units = total_units
 
+    def printInfo(self):
+        print(self.term + " GPA: " + str(round(self.calculateGPA(), 3)) +
+              " Units: " + str(self.total_units))
+        for i in self.klasses:
+            i.printInfo()
+
     def calculateGPA(self):
         gp = 0
         self.total_units = 0

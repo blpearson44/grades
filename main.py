@@ -3,33 +3,38 @@ from grade import Grade
 from semester import Semester
 
 
+def transform(object):
+    if isinstance(object, Grade):
+        return object.__dict__
+    elif isinstance(object, Klass):
+        return object.__dict__
+    elif isinstance(object, Semester):
+        return object.__dict__
+    else:
+        raise TypeError(
+            "Only Grade, Klass, and Semester objects can be serialized.")
+
+
 math_grade = Grade()
-math_grade.categories = {"Homework": tuple(
-    (0.15, [25, 96, 75, 83])), "Tests": tuple((0.85, [100, 95, 87, 93]))}
+math_grade.categories = {"Homework": [
+    0.15, [25, 96, 75, 83]], "Tests": [0.85, [100, 95, 87, 93]]}
 
 math = Klass("Math", math_grade)
 
-print(math.calculateGP())
-
 science_grade = Grade()
-science_grade.categories = {"Homework": tuple(
-    (0.15, [25, 13, 46, 19])), "Tests": tuple((0.85, [115, 95, 83, 93]))}
+science_grade.categories = {"Homework": [
+    0.15, [25, 13, 46, 19]], "Tests": [0.85, [115, 95, 83, 93]]}
 
 science = Klass("Science", science_grade)
 
-print(science.calculateGP())
-
 english_grade = Grade()
-english_grade.categories = {"Homework": tuple(
-    (0.15, [25, 13, 46, 19])), "Tests": tuple((0.85, [115, 95, 83, 93]))}
+english_grade.categories = {"Homework": [
+    0.15, [25, 13, 46, 19]], "Tests": [0.85, [115, 95, 83, 93]]}
 
 english = Klass("English", english_grade)
-
-print(english.calculateGP())
 
 klasses = [math, science, english]
 
 semester = Semester("Fall 2020", 0, *klasses)
 
-print(semester.calculateGPA())
-print(semester.gpa)
+semester.printInfo()
