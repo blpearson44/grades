@@ -2,17 +2,29 @@ import grade
 
 
 class Klass:
-    def __init__(self, name, grade, units=3):
+    def __init__(self, name, grade=0, units=3):
+        """ Initializes Klass object
+
+        Args:
+            name (string): name
+            grade (float, optional): percentage grade
+            units (int, optional): . Defaults to 3.
+        """
         self.name = name
         self.grade = grade
         self.units = units
 
     def printInfo(self):
+        """ Prints grade info """
         print(self.name + ": " + str(self.units) + " units")
         self.grade.printInfo()
 
-    # calculates gradepoints based on the standard college scale, certain classes won't be able to do that
     def calculateGP(self):
+        """ Calculates GPA
+
+        Returns:
+            float: calculates gradepoints for class
+        """
         if self.grade.calculatePercentage() > 92.5:
             return 4 * self.units
         elif self.grade.percentage > 89.5:
@@ -31,4 +43,9 @@ class Klass:
             return 1.7 * self.units
 
     def __str__(self):
+        """ Returns name as string representatation
+
+        Returns:
+            string: name
+        """
         return self.name

@@ -4,6 +4,17 @@ from semester import Semester
 
 
 def transform(object):
+    """ Serializes objects for json format
+
+    Args:
+        object (Grade, Klass, or Semester): [object to be serialized]
+
+    Raises:
+        TypeError: [Raises TypeError if incompatible type is entered]
+
+    Returns:
+        [dict]: [dictionary to be used when dumped into json file]
+    """
     if isinstance(object, Grade):
         return object.__dict__
     elif isinstance(object, Klass):

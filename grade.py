@@ -1,10 +1,20 @@
 class Grade:
     def __init__(self, categories=None, percentage=0):
+        """Creates a Grade object
+
+        Args:
+            categories (list, optional): A list containing the categories. Defaults to None.
+            percentage (int, optional): A float for the percentageA Defaults to 0.
+        """
         self.categories = categories
         self.percentage = percentage
 
-    # calculates percentage and prints percentage and categories
     def printInfo(self, assignments=False):
+        """ Calculates percentage and prints the info for the object
+
+        Args:
+            assignments (bool, optional): Whether or not to include the assignments. Defaults to False.
+        """
         print(str(round(self.calculatePercentage(), 2)) + "%")
         for key in self.categories:
             if(len(self.categories[key][1]) > 0):
@@ -17,8 +27,13 @@ class Grade:
                 print(self.categories[key])
         print()
 
-    # calculates percentage, sets self.percentage, and returns self.percentage
     def calculatePercentage(self):
+        """ Calculates percentage, sets self.percentage, and returns self.percentage
+
+
+        Returns:
+            float: percentage
+        """
         self.percentage = 0
         for key in self.categories:
             if len(self.categories[key][1]) > 0:
@@ -26,9 +41,12 @@ class Grade:
                     (sum(self.categories[key][1])/len(self.categories[key][1]))
         return self.percentage
 
-    # prompts user to create the various categories and their weights,
-    # assignments is left blank
     def createGrade(self):
+        """ Prompts user to create the various categories and their weights, assignments is left blank
+
+        Returns:
+            Grade : self
+        """
         self.categories = {}
         numCategories = int(input("How many categories: "))
         for i in range(numCategories):
@@ -39,15 +57,15 @@ class Grade:
             self.categories[category] = [weight, []]
         return self
 
-    # prompts user to change the weights of the categories
     def changeWeight(self):
+        """ Prompts user to change the weights of the categories """
         for key in self.categories:
             weight = float(input("New weight for category " + key +
                                  "(" + str(self.categories[key][0]) + "): "))
             self.categories[key][0] = weight
 
-    # prompts user to add categories
     def addCategories(self):
+        """ Prompts user to add categories """
         answer = str(
             input("Would you like to change the weights of existing categories? (Y/N): "))
         if answer == "Y":
@@ -64,8 +82,8 @@ class Grade:
                     input("What is the weight for this category? (n < 1): "))
                 self.categories[category] = [weight, []]
 
-    # prompts user to add assignments
     def addAssignments(self):
+        """ Prompts user to add assignments"""
         for key in self.categories:
             numAssignments = int(
                 input("How many assignments for " + key + "?\n"))
